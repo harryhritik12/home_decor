@@ -1,0 +1,44 @@
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.2);
+  }
+  
+  .background-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(../assets/Image4.jpg);
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .text-container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+  
+  .splash-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: #fff;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  .splash-subtitle {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    color: #fff;
+    font-weight: 300;
+    text-transform: uppercase;
+  }

@@ -37,21 +37,20 @@ const ProjectSlider = () => {
     <section className="p-10 bg-transparent">
       <div className="text-center mb-6">
         <button
-          className={`mx-4 text-xl font-bold transition-colors duration-300 ${
-            showResidential ? "text-black border-b-4 border-black" : "text-gray-400"
-          }`}
+          className={`mx-4 text-xl font-bold text-white transition-colors duration-300 ${showResidential ? "border-b-4 border-white" : "opacity-60"
+            }`}
           onClick={() => setShowResidential(true)}
         >
           RESIDENTIAL
         </button>
         <button
-          className={`mx-4 text-xl font-bold transition-colors duration-300 ${
-            !showResidential ? "text-black border-b-4 border-black" : "text-gray-400"
-          }`}
+          className={`mx-4 text-xl font-bold text-white transition-colors duration-300 ${!showResidential ? "border-b-4 border-white" : "opacity-60"
+            }`}
           onClick={() => setShowResidential(false)}
         >
           COMMERCIAL
         </button>
+
       </div>
       <div className="w-full">
         <Swiper

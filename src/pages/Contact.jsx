@@ -13,6 +13,9 @@ export default function Contact() {
     description: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+
   const handleChange = (e) => {
     const { name, value, type } = e.target;
     setFormData((prev) => ({
@@ -21,16 +24,47 @@ export default function Contact() {
     }));
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    try {
+      const response = await fetch("https://home-decor-backend-uh0c.onrender.com/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setMessage("Submitted successfully!");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          service: "",
+          timeline: "",
+          minBudget: 150000,
+          maxBudget: 500000,
+          description: "",
+        });
+      } else {
+        setMessage(`Submission failed: ${data.error}`);
+      }
+    } catch (error) {
+      setMessage("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col lg:flex-row min-h-screen items-center justify-center bg-gray-100 px-6 py-12">
       <div className="flex flex-col lg:flex-row w-full max-w-6xl shadow-lg rounded-2xl overflow-hidden bg-white">
         {/* Image Section */}
         <div className="w-full lg:w-1/2">
-          <img
-            src={image}
-            alt="Decor"
-            className="w-full h-full object-cover"
-          />
+          <img src={image} alt="Decor" className="w-full h-full object-cover" />
         </div>
 
         {/* Form Section */}
@@ -40,13 +74,14 @@ export default function Contact() {
             Reach out via the form below, email us, or connect on social media.
           </p>
 
-          <form className="space-y-5">
+          <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="flex gap-4">
               <input
                 type="text"
                 name="firstName"
                 placeholder="First Name"
                 required
+                value={formData.firstName}
                 onChange={handleChange}
                 className="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:outline-none"
               />
@@ -55,6 +90,7 @@ export default function Contact() {
                 name="lastName"
                 placeholder="Last Name"
                 required
+                value={formData.lastName}
                 onChange={handleChange}
                 className="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:outline-none"
               />
@@ -65,6 +101,7 @@ export default function Contact() {
               name="email"
               placeholder="Email Address"
               required
+              value={formData.email}
               onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:outline-none"
             />
@@ -82,6 +119,7 @@ export default function Contact() {
                         type="radio"
                         name="service"
                         value={service}
+                        checked={formData.service === service}
                         onChange={handleChange}
                         required
                         className="form-radio text-gray-800"
@@ -97,6 +135,7 @@ export default function Contact() {
               type="text"
               name="timeline"
               placeholder="Est. Project Timeline"
+              value={formData.timeline}
               onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-800 focus:outline-none"
             />
@@ -156,16 +195,12 @@ export default function Contact() {
                   className="w-full"
                 />
               </div>
-
-              <div className="flex justify-between text-gray-500 text-sm mt-2">
-                <span>₹150k</span>
-                <span>₹5M+</span>
-              </div>
             </div>
 
             <textarea
               name="description"
               placeholder="Describe your project..."
+              value={formData.description}
               onChange={handleChange}
               className="w-full p-3 border border-gray-300 rounded-lg h-32 focus:ring-2 focus:ring-gray-800 focus:outline-none"
             ></textarea>
@@ -173,10 +208,13 @@ export default function Contact() {
             <button
               type="submit"
               className="bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition"
+              disabled={loading}
             >
-              Submit
+              {loading ? "Submitting..." : "Submit"}
             </button>
           </form>
+
+          {message && <p className="mt-4 text-gray-700">{message}</p>}
 
           <p className="mt-6 text-gray-600 text-sm">
             EMAIL US:{" "}

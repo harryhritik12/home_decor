@@ -11,11 +11,13 @@ export default function Contact() {
     minBudget: 150000,
     maxBudget: 500000,
     description: "",
+    submittedAt: "", // Will store the timestamp
   });
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
+  // Handle Input Change
   const handleChange = (e) => {
     const { name, value, type } = e.target;
     setFormData((prev) => ({
@@ -24,16 +26,26 @@ export default function Contact() {
     }));
   };
 
+  // Handle Form Submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setMessage("");
 
+    // Capture current timestamp in ISO format
+    const timestamp = new Date().toISOString();
+
+    // Include timestamp in form data
+    const dataToSend = {
+      ...formData,
+      submittedAt: timestamp, // Adding timestamp to the request
+    };
+
     try {
       const response = await fetch("https://home-decor-backend-uh0c.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(dataToSend),
       });
 
       const data = await response.json();
@@ -48,6 +60,7 @@ export default function Contact() {
           minBudget: 150000,
           maxBudget: 500000,
           description: "",
+          submittedAt: "", // Reset timestamp
         });
       } else {
         setMessage(`Submission failed: ${data.error}`);
@@ -62,6 +75,7 @@ export default function Contact() {
   return (
     <div className="flex flex-col lg:flex-row min-h-screen items-center justify-center bg-gray-100 px-6 py-12">
       <div className="flex flex-col lg:flex-row w-full max-w-6xl shadow-lg rounded-2xl overflow-hidden bg-white">
+        
         {/* Image Section */}
         <div className="w-full lg:w-1/2">
           <img src={image} alt="Decor" className="w-full h-full object-cover" />
@@ -108,26 +122,22 @@ export default function Contact() {
 
             {/* Service Selection */}
             <div>
-              <label className="block text-sm text-gray-700 mb-2">
-                Services Needed
-              </label>
+              <label className="block text-sm text-gray-700 mb-2">Services Needed</label>
               <div className="flex gap-4">
-                {["Residential", "Commercial", "Other Inquiry"].map(
-                  (service) => (
-                    <label key={service} className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        name="service"
-                        value={service}
-                        checked={formData.service === service}
-                        onChange={handleChange}
-                        required
-                        className="form-radio text-gray-800"
-                      />
-                      {service}
-                    </label>
-                  )
-                )}
+                {["Residential", "Commercial", "Other Inquiry"].map((service) => (
+                  <label key={service} className="flex items-center gap-2">
+                    <input
+                      type="radio"
+                      name="service"
+                      value={service}
+                      checked={formData.service === service}
+                      onChange={handleChange}
+                      required
+                      className="form-radio text-gray-800"
+                    />
+                    {service}
+                  </label>
+                ))}
               </div>
             </div>
 
@@ -142,9 +152,7 @@ export default function Contact() {
 
             {/* Budget Section */}
             <div>
-              <label className="block text-sm text-gray-700 mb-2">
-                Estimated Budget Range
-              </label>
+              <label className="block text-sm text-gray-700 mb-2">Estimated Budget Range</label>
 
               {/* Min Budget Input & Slider */}
               <div className="flex items-center gap-3">
@@ -158,16 +166,6 @@ export default function Contact() {
                   step="50000"
                   onChange={handleChange}
                   className="p-2 border border-gray-300 rounded-lg w-32"
-                />
-                <input
-                  type="range"
-                  name="minBudget"
-                  min="150000"
-                  max={formData.maxBudget - 50000}
-                  step="50000"
-                  value={formData.minBudget}
-                  onChange={handleChange}
-                  className="w-full"
                 />
               </div>
 
@@ -183,16 +181,6 @@ export default function Contact() {
                   step="50000"
                   onChange={handleChange}
                   className="p-2 border border-gray-300 rounded-lg w-32"
-                />
-                <input
-                  type="range"
-                  name="maxBudget"
-                  min={formData.minBudget + 50000}
-                  max="5000000"
-                  step="50000"
-                  value={formData.maxBudget}
-                  onChange={handleChange}
-                  className="w-full"
                 />
               </div>
             </div>
@@ -218,10 +206,7 @@ export default function Contact() {
 
           <p className="mt-6 text-gray-600 text-sm">
             EMAIL US:{" "}
-            <a
-              href="mailto:homedecor@homedecor.com"
-              className="text-gray-900 underline"
-            >
+            <a href="mailto:homedecor@homedecor.com" className="text-gray-900 underline">
               homedecor@homedecor.com
             </a>
           </p>

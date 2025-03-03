@@ -1,65 +1,61 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { motion } from "framer-motion";
+import logo from "../assets/logo.jpg";
 
 const Footer = () => {
-  const navigate = useNavigate();
-
-  const handleHomeClick = () => {
-    if (window.location.pathname === "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      navigate("/");
-    }
-  };
-
-  const handleTeamClick = () => {
-    navigate("/process"); // Navigate to the process page
-    setTimeout(() => {
-      const teamSection = document.getElementById("team-section");
-      if (teamSection) {
-        teamSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    }, 300);
-  };
-
   return (
-    <footer className="bg-gray-900 text-gray-300 py-16 px-6 md:px-20">
+    <footer className="bg-[#FFF0F5] text-gray-900 py-16 px-6 md:px-20">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* Left Section - Logo */}
-        <div className="flex flex-col space-y-3">
-          <div className="text-5xl font-extrabold text-white tracking-tight">HD</div>
-          <p className="text-sm text-gray-400">Innovative home decor solutions tailored for you.</p>
+        <div className="flex flex-col items-center space-y-3">
+          <img src={logo} alt="Home Decor Logo" className="w-44 h-auto" />
+          <p className="text-sm text-gray-800 text-center">
+            Innovative home decor solutions tailored for you.
+          </p>
         </div>
 
         {/* Center Section - Navigation */}
-        <div className="grid grid-cols-2 gap-6 text-sm font-medium uppercase tracking-wide">
+        <div className="grid grid-cols-2 gap-6 text-sm font-medium uppercase tracking-wide text-center">
           <div className="flex flex-col space-y-2">
-            <button onClick={handleHomeClick} className="text-left hover:text-white transition-colors">Home</button>
-            <Link to="/process" className="hover:text-white transition-colors">Process</Link>
-            <button onClick={handleTeamClick} className="text-left hover:text-white transition-colors">
+            <Link to="/" className="hover:text-[#8B4513] transition-colors">
+              Home
+            </Link>
+            <Link to="/process" className="hover:text-[#8B4513] transition-colors">
+              Process
+            </Link>
+            <Link to="/team" className="hover:text-[#8B4513] transition-colors">
               Team
-            </button>
-            <Link to="/press" className="hover:text-white transition-colors">Press</Link>
+            </Link>
+            <Link to="/press" className="hover:text-[#8B4513] transition-colors">
+              Press
+            </Link>
           </div>
           <div className="flex flex-col space-y-2">
-            <Link to="/projects" className="hover:text-white transition-colors">Projects</Link>
-            <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
+            <Link to="/projects" className="hover:text-[#8B4513] transition-colors">
+              Projects
+            </Link>
+            <Link to="/contact" className="hover:text-[#8B4513] transition-colors">
+              Contact
+            </Link>
           </div>
         </div>
 
         {/* Right Section - Contact & Socials */}
-        <div className="flex flex-col space-y-4">
+        <div className="flex flex-col items-center space-y-4">
           <p className="text-sm tracking-wide">Mobile: +91 9090 900000</p>
           <p className="text-sm tracking-wide">
-            Email: <a href="mailto:hello@homedecor.com" className="hover:underline text-white">hello@homedecor.com</a>
+            Email:{" "}
+            <a href="mailto:hello@homedecor.com" className="hover:underline text-[#8B4513]">
+              hello@homedecor.com
+            </a>
           </p>
           <div className="flex space-x-4 text-2xl">
             <motion.a
               href="https://facebook.com"
               whileHover={{ scale: 1.1 }}
-              className="bg-gray-800 text-gray-300 rounded-full w-12 h-12 flex items-center justify-center hover:bg-white hover:text-gray-900 transition-all"
+              className="bg-gray-300 text-gray-900 rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-900 hover:text-white transition-all"
               aria-label="Visit our Facebook page"
             >
               <FaFacebook />
@@ -67,7 +63,7 @@ const Footer = () => {
             <motion.a
               href="https://instagram.com"
               whileHover={{ scale: 1.1 }}
-              className="bg-gray-800 text-gray-300 rounded-full w-12 h-12 flex items-center justify-center hover:bg-white hover:text-gray-900 transition-all"
+              className="bg-gray-300 text-gray-900 rounded-full w-12 h-12 flex items-center justify-center hover:bg-gray-900 hover:text-white transition-all"
               aria-label="Visit our Instagram page"
             >
               <FaInstagram />
@@ -77,7 +73,7 @@ const Footer = () => {
       </div>
 
       {/* Copyright Section */}
-      <div className="text-center text-xs text-gray-500 mt-12 tracking-wide">
+      <div className="text-center text-xs text-gray-700 mt-12 tracking-wide">
         &copy; 2025 Home Decor Design and Interiors. All Rights Reserved.
       </div>
     </footer>

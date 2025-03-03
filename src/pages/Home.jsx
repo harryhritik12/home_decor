@@ -7,7 +7,7 @@ import InteriorFeature from "../components/InteriorFeature";
 
 export default function Home() {
   return (
-    <div >
+    <div className="pt-20"> {/* Add padding to push content down */}
       <div className="h-full w-full">
         <ImageSlider />
         <HeroSection />
@@ -18,3 +18,4 @@ export default function Home() {
     </div>
   );
 }
+

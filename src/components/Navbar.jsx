@@ -24,7 +24,7 @@ export default function Navbar() {
       <div className="flex-1 flex justify-center">
         <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.3 }} className="cursor-pointer">
           <Link to="/" onClick={() => setIsOpen(false)}>
-            <img src={logo} alt="Home Decor Logo" className="w-36 h-auto" />
+            <img src={logo} alt="Home Decor Logo" className="w-44 h-auto" />
           </Link>
         </motion.div>
       </div>

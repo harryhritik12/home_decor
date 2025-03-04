@@ -56,7 +56,7 @@ export default function ProjectDetail() {
         <div className="flex justify-between items-center mt-8">
           <button
             className="text-gray-600 hover:text-black text-lg font-medium transition-transform transform hover:scale-105"
-            onClick={() => navigate(-1)}
+            onClick={() => navigate('/projects')}
           >
             ← Back
           </button>

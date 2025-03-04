@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { motion } from "framer-motion";
-import logo from "../assets/logo.jpg";
+import logo from "../assets/logo4.jpg";
 
 const Footer = () => {
   return (
@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* Left Section - Logo */}
         <div className="flex flex-col items-center space-y-3">
-          <img src={logo} alt="Home Decor Logo" className="w-44 h-auto" />
+          <img src={logo} alt="Home Decor Logo" className="w-28 h-auto" />
           <p className="text-sm text-gray-800 text-center">
             Innovative home decor solutions tailored for you.
           </p>

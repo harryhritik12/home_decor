@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,9 +7,41 @@ import logo from "../assets/logo4.jpg";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [logoLoaded, setLogoLoaded] = useState(false);
+  const [menuButtonPosition, setMenuButtonPosition] = useState({ top: 0, left: 0 });
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+  const menuButtonRef = useRef(null);
 
   useEffect(() => {
-    setTimeout(() => setLogoLoaded(true), 500);
+    // Set logo as loaded after a delay
+    const logoTimer = setTimeout(() => setLogoLoaded(true), 500);
+
+    // Function to update menu button position
+    const updateMenuButtonPosition = () => {
+      if (menuButtonRef.current) {
+        const rect = menuButtonRef.current.getBoundingClientRect();
+        setMenuButtonPosition({ top: rect.top, left: rect.left });
+      }
+    };
+
+    // Function to check screen size
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 768);
+    };
+
+    // Initial position and screen size check
+    updateMenuButtonPosition();
+    checkScreenSize();
+
+    // Update position and screen size on window resize
+    window.addEventListener("resize", updateMenuButtonPosition);
+    window.addEventListener("resize", checkScreenSize);
+
+    // Cleanup event listeners and timers
+    return () => {
+      clearTimeout(logoTimer);
+      window.removeEventListener("resize", updateMenuButtonPosition);
+      window.removeEventListener("resize", checkScreenSize);
+    };
   }, []);
 
   const navigate = useNavigate();
@@ -41,6 +73,7 @@ export default function Navbar() {
 
       {/* Menu Button */}
       <motion.button
+        ref={menuButtonRef}
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.2 }}
         transition={{ duration: 0.3 }}
@@ -53,11 +86,33 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
+            initial={{
+              top: isSmallScreen ? menuButtonPosition.top : "50%",
+              left: isSmallScreen ? menuButtonPosition.left : "50%",
+              width: 0,
+              height: 0,
+              opacity: 0,
+              transform: isSmallScreen ? "translate(0, 0)" : "translate(-50%, -50%)",
+            }}
+            animate={{
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              opacity: 1,
+              transform: "translate(0, 0)",
+            }}
+            exit={{
+              top: isSmallScreen ? menuButtonPosition.top : "50%",
+              left: isSmallScreen ? menuButtonPosition.left : "50%",
+              width: 0,
+              height: 0,
+              opacity: 0,
+              transform: isSmallScreen ? "translate(0, 0)" : "translate(-50%, -50%)",
+            }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="fixed inset-0 bg-[#FFF0F5] text-white flex flex-col items-center justify-center"
+            className="fixed bg-[#FFF0F5] text-white flex flex-col items-center justify-center"
+            style={{ zIndex: 40 }}
           >
             <motion.div
               initial={{ opacity: 0 }}

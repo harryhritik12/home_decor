@@ -73,7 +73,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen items-center justify-center bg-gray-100 px-6 py-12">
+    <div className="flex flex-col lg:flex-row min-h-screen items-center justify-center bg-gray-100 px-6 py-12 mt-24">
       <div className="flex flex-col lg:flex-row w-full max-w-6xl shadow-lg rounded-2xl overflow-hidden bg-white">
         
         {/* Image Section */}

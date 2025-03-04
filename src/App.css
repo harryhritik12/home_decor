@@ -30,3 +30,6 @@ nav {
 nav .flex-1 {
   margin-left: 0;
 }
+nav {
+  overflow: visible;
+}

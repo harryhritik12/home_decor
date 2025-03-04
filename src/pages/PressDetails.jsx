@@ -35,7 +35,7 @@ const PressDetails = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 text-gray-900 font-serif p-10">
+        <div className="min-h-screen bg-gray-50 text-gray-900 font-serif p-10 mt-24">
             <button onClick={() => navigate(-1)} className="mb-6 text-gray-800 hover:underline">
                 ← Back to Press
             </button>

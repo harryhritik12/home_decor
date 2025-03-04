@@ -7,7 +7,7 @@ import team4 from "../assets/team/team4.jpg";
 
 const Process = () => {
     return (
-        <div className="bg-white text-gray-900 min-h-screen font-sans">
+        <div className="bg-white text-gray-900 min-h-screen font-sans mt-24">
             <section className="relative flex flex-col md:flex-row items-center max-w-7xl mx-auto py-20 px-6 md:px-16">
                 <div className="md:w-1/2">
                     <h1 className="text-5xl md:text-6xl font-bold leading-tight">

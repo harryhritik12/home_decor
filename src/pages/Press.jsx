@@ -16,7 +16,7 @@ const Press = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-300 text-gray-900 font-sans">
+    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-300 text-gray-900 font-sans mt-24">
       <section className="max-w-6xl mx-auto py-24 px-8 md:px-20 text-center">
         <h1 className="text-5xl font-extrabold text-gray-800">Press</h1>
         <p className="text-lg text-gray-700 mt-4">Featuring Home Decor in leading publications.</p>

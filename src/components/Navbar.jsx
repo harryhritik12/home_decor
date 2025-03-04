@@ -12,10 +12,8 @@ export default function Navbar() {
   const menuButtonRef = useRef(null);
 
   useEffect(() => {
-    // Set logo as loaded after a delay
     const logoTimer = setTimeout(() => setLogoLoaded(true), 500);
 
-    // Function to update menu button position
     const updateMenuButtonPosition = () => {
       if (menuButtonRef.current) {
         const rect = menuButtonRef.current.getBoundingClientRect();
@@ -23,20 +21,16 @@ export default function Navbar() {
       }
     };
 
-    // Function to check screen size
     const checkScreenSize = () => {
       setIsSmallScreen(window.innerWidth < 768);
     };
 
-    // Initial position and screen size check
     updateMenuButtonPosition();
     checkScreenSize();
 
-    // Update position and screen size on window resize
     window.addEventListener("resize", updateMenuButtonPosition);
     window.addEventListener("resize", checkScreenSize);
 
-    // Cleanup event listeners and timers
     return () => {
       clearTimeout(logoTimer);
       window.removeEventListener("resize", updateMenuButtonPosition);
@@ -77,7 +71,7 @@ export default function Navbar() {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.2 }}
         transition={{ duration: 0.3 }}
-        className="text-3xl text-gray-800 mr-4"
+        className="text-3xl text-gray-800 mr-6"
       >
         {isOpen ? <X /> : <Menu />}
       </motion.button>
@@ -111,7 +105,7 @@ export default function Navbar() {
               transform: isSmallScreen ? "translate(0, 0)" : "translate(-50%, -50%)",
             }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="fixed bg-[#FFF0F5] text-white flex flex-col items-center justify-center"
+            className="fixed inset-0 bg-[#FFF0F5] text-white flex flex-col items-center justify-center pt-10"
             style={{ zIndex: 40 }}
           >
             <motion.div
@@ -127,7 +121,7 @@ export default function Navbar() {
 
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-8 right-10 text-4xl text-gray-800 hover:text-gray-300 transition"
+              className="absolute top-12 right-10 text-4xl text-gray-800 hover:text-gray-300 transition"
             >
               <X size={32} />
             </button>

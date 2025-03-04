@@ -34,7 +34,7 @@ export default function ProjectDetail() {
     .slice(0, 3);
 
   return (
-    <section className="min-h-screen bg-gray-100">
+    <section className="min-h-screen bg-gray-100 mt-16">
       <div className="max-w-[1300px] mx-auto px-6 py-12">
         {/* Hero Section */}
         <div className="relative w-full h-[450px] bg-gray-300 overflow-hidden rounded-xl shadow-lg">

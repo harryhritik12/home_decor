@@ -44,7 +44,12 @@ const Footer = () => {
 
         {/* Right Section - Contact & Socials */}
         <div className="flex flex-col items-center space-y-4">
-          <p className="text-sm tracking-wide">Mobile: +91 9090 900000</p>
+        <p className="text-sm tracking-wide">
+            Mobile:{" "}
+            <a href="tel:+919090900000" className="hover:underline text-[#8B4513]">
+              +91 9090 900000
+            </a>
+          </p>
           <p className="text-sm tracking-wide">
             Email:{" "}
             <a href="mailto:hello@homedecor.com" className="hover:underline text-[#8B4513]">

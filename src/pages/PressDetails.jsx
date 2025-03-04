@@ -35,7 +35,7 @@ const PressDetails = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50 text-gray-900 font-serif p-10 mt-24">
+        <div className="min-h-screen bg-gray-50 text-gray-900 font-serif p-6 md:p-10 mt-16 md:mt-24">
             <button onClick={() => navigate(-1)} className="mb-6 text-gray-800 hover:underline">
                 ← Back to Press
             </button>
@@ -45,12 +45,22 @@ const PressDetails = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.5 }}
-                className="max-w-4xl mx-auto bg-white p-8 shadow-lg rounded-xl relative"
+                className="max-w-full md:max-w-4xl mx-auto bg-white p-6 md:p-8 shadow-lg rounded-xl relative"
             >
-                <h1 className="text-5xl font-bold mb-6 text-center">{article.title}</h1>
-                <img src={article.image} alt={article.title} className="w-full h-96 object-cover rounded-xl mb-6" />
-                <p className="text-lg text-gray-700 leading-relaxed">{article.content}</p>
+                {/* Responsive Title */}
+                <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-6 text-center break-words">
+                    {article.title}
+                </h1>
                 
+                {/* Responsive Image */}
+                <img src={article.image} alt={article.title} className="w-full max-h-80 object-cover rounded-xl mb-6" />
+
+                {/* Content */}
+                <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
+                    {article.content}
+                </p>
+                
+                {/* Navigation Buttons */}
                 <div className="flex justify-between mt-8">
                     <button onClick={handlePrevious} className="text-gray-800 hover:underline">← Previous</button>
                     <button onClick={handleNext} className="text-gray-800 hover:underline">Next →</button>

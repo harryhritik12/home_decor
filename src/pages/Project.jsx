@@ -40,7 +40,7 @@ export default function ProjectsPage() {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-white to-gray-100 mt-24">
+    <div className="min-h-screen w-full bg-gradient-to-b from-white to-gray-100 mt-16">
       <section className="max-w-[1400px] mx-auto px-8 py-20">
         <h1 className="text-6xl font-serif text-gray-900">Projects</h1>
 

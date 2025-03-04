@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/logo.jpg";
+import logo from "../assets/logo4.jpg";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +35,7 @@ export default function Navbar() {
         className="h-full flex items-center"
       >
         <Link to="/" onClick={() => setIsOpen(false)}>
-          <img src={logo} alt="Home Decor Logo" className="w-48 h-auto" />
+          <img src={logo} alt="Home Decor Logo" className="h-20 object-contain" />
         </Link>
       </motion.div>
 
@@ -66,7 +66,7 @@ export default function Navbar() {
               className="absolute top-8 left-10 cursor-pointer"
             >
               <Link to="/" onClick={() => setIsOpen(false)}>
-                <img src={logo} alt="Home Decor Logo" className="w-48 h-auto" />
+                <img src={logo} alt="Home Decor Logo" className="h-20 object-contain" />
               </Link>
             </motion.div>
 

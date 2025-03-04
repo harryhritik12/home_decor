@@ -6,4 +6,11 @@
 body {
     background-color: #b7b0a8 !important;
   }
+  nav {
+    margin: 0;
+    padding: 0;
+  }
   
+  nav .flex-1 {
+    margin-left: 0;
+  }
